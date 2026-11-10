@@ -6,9 +6,12 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import murach.business.User;
+import murach.business.Survey;
+import murach.business.SurveyDTO;
 import murach.data.UserDB;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 @WebServlet({"/emailList", "/survey"})
 public class EmailListServlet extends HttpServlet {
@@ -37,11 +40,13 @@ public class EmailListServlet extends HttpServlet {
             boolean wantsCdReleases = "YES".equals(request.getParameter("wantsCdReleases"));
             String contactVia = request.getParameter("contactVia");
 
-            User user = new User(firstName, lastName, email, dateOfBirth, hearAbout,
-                    wantsAnnouncements, wantsCdReleases, contactVia);
-            UserDB.insert(user);
+            User user = new User(firstName, lastName, email, LocalDate.parse(dateOfBirth));
+            Survey survey = new Survey(user, hearAbout, wantsAnnouncements,
+                    wantsCdReleases, contactVia);
+            SurveyDTO surveyDTO = new SurveyDTO(user, survey);
+            UserDB.insert(surveyDTO);
 
-            request.setAttribute("user", user);
+            request.setAttribute("surveyDTO", surveyDTO);
             url = "/thanks.jsp";
         }
 
