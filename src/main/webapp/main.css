@@ -2,20 +2,35 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     margin-left: 2em;
     margin-right: 2em;
+    color: #111;
 }
 
-h1 {
+main {
+    max-width: 560px;
+}
+
+h1, h2 {
     color: teal;
+    margin-bottom: 0.4em;
 }
 
-label {
-    width: 7em;
+img.logo {
+    display: block;
+    width: 140px;
+    height: auto;
+    margin: 0 0 1.5em;
+}
+
+label.entry {
+    width: 8em;
     float: left;
     padding-right: 0.5em;
+    font-weight: bold;
 }
 
+input[type="text"],
 input[type="email"],
-input[type="text"] {
+input[type="date"] {
     width: 15em;
     margin-bottom: 0.5em;
 }
@@ -24,11 +39,32 @@ br {
     clear: left;
 }
 
-input[type="submit"].btn-join {
-    margin-left: 7.5em;
-    margin-top: 0.5em;
+label.inline {
+    width: auto;
+    float: none;
+    font-weight: normal;
+    margin-right: 1em;
 }
 
-span.data {
-    display: inline-block;
+.radio-group, .checkbox-group {
+    margin-bottom: 0.8em;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.25em;
+}
+
+.checkbox-group input {
+    margin-top: 0.25em;
+}
+
+section {
+    margin-bottom: 1em;
+}
+
+input[type="submit"] {
+    margin-top: 1em;
+    padding: 2px 12px;
 }

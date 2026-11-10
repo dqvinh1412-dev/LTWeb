@@ -10,13 +10,14 @@ import murach.data.UserDB;
 
 import java.io.IOException;
 
-@WebServlet("/emailList")
+@WebServlet({"/emailList", "/survey"})
 public class EmailListServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        request.setCharacterEncoding("UTF-8");
         String url = "/index.html";
         String action = request.getParameter("action");
 
@@ -30,8 +31,14 @@ public class EmailListServlet extends HttpServlet {
             String firstName = request.getParameter("firstName");
             String lastName = request.getParameter("lastName");
             String email = request.getParameter("email");
+            String dateOfBirth = request.getParameter("dateOfBirth");
+            String hearAbout = request.getParameter("hearAbout");
+            boolean wantsAnnouncements = "YES".equals(request.getParameter("wantsAnnouncements"));
+            boolean wantsCdReleases = "YES".equals(request.getParameter("wantsCdReleases"));
+            String contactVia = request.getParameter("contactVia");
 
-            User user = new User(firstName, lastName, email);
+            User user = new User(firstName, lastName, email, dateOfBirth, hearAbout,
+                    wantsAnnouncements, wantsCdReleases, contactVia);
             UserDB.insert(user);
 
             request.setAttribute("user", user);
