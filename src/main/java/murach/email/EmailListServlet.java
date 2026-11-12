@@ -59,8 +59,8 @@ public class EmailListServlet extends HttpServlet {
             }
         }
 
-        System.out.println(action);
-        log(action);
+        System.out.println("EmailListServlet action: " + action);
+        log("EmailListServlet action: " + action);
 
         getServletContext()
                 .getRequestDispatcher(url)
