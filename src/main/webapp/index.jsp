@@ -23,16 +23,16 @@
             <h2>Your information:</h2>
 
             <label class="entry" for="firstName">First Name</label>
-            <input type="text" id="firstName" name="firstName" value="${param.firstName}" required><br>
+            <input type="text" id="firstName" name="firstName" value="${param.firstName}"><br>
 
             <label class="entry" for="lastName">Last Name</label>
-            <input type="text" id="lastName" name="lastName" value="${param.lastName}" required><br>
+            <input type="text" id="lastName" name="lastName" value="${param.lastName}"><br>
 
             <label class="entry" for="email">Email</label>
-            <input type="email" id="email" name="email" value="${param.email}" required><br>
+            <input type="email" id="email" name="email" value="${param.email}"><br>
 
             <label class="entry" for="dateOfBirth">Date of Birth</label>
-            <input type="date" id="dateOfBirth" name="dateOfBirth" value="${param.dateOfBirth}" required><br>
+            <input type="date" id="dateOfBirth" name="dateOfBirth" value="${param.dateOfBirth}"><br>
         </section>
 
         <section>
