@@ -34,14 +34,15 @@ public class EmailListServlet extends HttpServlet {
             String firstName = request.getParameter("firstName");
             String lastName = request.getParameter("lastName");
             String email = request.getParameter("email");
+            String dateOfBirth = request.getParameter("dateOfBirth");
 
             if (firstName == null || firstName.trim().isEmpty()
                     || lastName == null || lastName.trim().isEmpty()
-                    || email == null || email.trim().isEmpty()) {
-                request.setAttribute("message", "Please enter values for all three required fields.");
+                    || email == null || email.trim().isEmpty()
+                    || dateOfBirth == null || dateOfBirth.trim().isEmpty()) {
+                request.setAttribute("message", "Please fill out all fields.");
                 url = "/index.jsp";
             } else {
-                String dateOfBirth = request.getParameter("dateOfBirth");
                 String hearAbout = request.getParameter("hearAbout");
                 boolean wantsAnnouncements = "YES".equals(request.getParameter("wantsAnnouncements"));
                 boolean wantsCdReleases = "YES".equals(request.getParameter("wantsCdReleases"));
