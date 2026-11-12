@@ -21,7 +21,7 @@ public class EmailListServlet extends HttpServlet {
             throws ServletException, IOException {
 
         request.setCharacterEncoding("UTF-8");
-        String url = "/index.html";
+        String url = "/index.jsp";
         String action = request.getParameter("action");
 
         if (action == null) {
@@ -29,26 +29,37 @@ public class EmailListServlet extends HttpServlet {
         }
 
         if (action.equals("join")) {
-            url = "/index.html";
+            url = "/index.jsp";
         } else if (action.equals("add")) {
             String firstName = request.getParameter("firstName");
             String lastName = request.getParameter("lastName");
             String email = request.getParameter("email");
-            String dateOfBirth = request.getParameter("dateOfBirth");
-            String hearAbout = request.getParameter("hearAbout");
-            boolean wantsAnnouncements = "YES".equals(request.getParameter("wantsAnnouncements"));
-            boolean wantsCdReleases = "YES".equals(request.getParameter("wantsCdReleases"));
-            String contactVia = request.getParameter("contactVia");
 
-            User user = new User(firstName, lastName, email, LocalDate.parse(dateOfBirth));
-            Survey survey = new Survey(user, hearAbout, wantsAnnouncements,
-                    wantsCdReleases, contactVia);
-            SurveyDTO surveyDTO = new SurveyDTO(user, survey);
-            UserDB.insert(surveyDTO);
+            if (firstName == null || firstName.trim().isEmpty()
+                    || lastName == null || lastName.trim().isEmpty()
+                    || email == null || email.trim().isEmpty()) {
+                request.setAttribute("message", "Please enter values for all three required fields.");
+                url = "/index.jsp";
+            } else {
+                String dateOfBirth = request.getParameter("dateOfBirth");
+                String hearAbout = request.getParameter("hearAbout");
+                boolean wantsAnnouncements = "YES".equals(request.getParameter("wantsAnnouncements"));
+                boolean wantsCdReleases = "YES".equals(request.getParameter("wantsCdReleases"));
+                String contactVia = request.getParameter("contactVia");
 
-            request.setAttribute("surveyDTO", surveyDTO);
-            url = "/thanks.jsp";
+                User user = new User(firstName, lastName, email, LocalDate.parse(dateOfBirth));
+                Survey survey = new Survey(user, hearAbout, wantsAnnouncements,
+                        wantsCdReleases, contactVia);
+                SurveyDTO surveyDTO = new SurveyDTO(user, survey);
+                UserDB.insert(surveyDTO);
+
+                request.setAttribute("surveyDTO", surveyDTO);
+                url = "/thanks.jsp";
+            }
         }
+
+        System.out.println(action);
+        log(action);
 
         getServletContext()
                 .getRequestDispatcher(url)

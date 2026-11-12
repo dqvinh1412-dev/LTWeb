@@ -41,7 +41,7 @@
 
     <p>To complete another survey, click the Return button below.</p>
 
-    <form action="emailList" method="get">
+    <form action="emailList" method="post">
         <input type="hidden" name="action" value="join">
         <input type="submit" value="Return">
     </form>

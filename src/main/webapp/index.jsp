@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,6 +14,7 @@
 
     <h1>Survey</h1>
     <p>If you have a moment, we'd appreciate it if you would fill out this survey.</p>
+    <p>${message}</p>
 
     <form action="emailList" method="post">
         <input type="hidden" name="action" value="add">
@@ -21,16 +23,16 @@
             <h2>Your information:</h2>
 
             <label class="entry" for="firstName">First Name</label>
-            <input type="text" id="firstName" name="firstName" required><br>
+            <input type="text" id="firstName" name="firstName" value="${param.firstName}" required><br>
 
             <label class="entry" for="lastName">Last Name</label>
-            <input type="text" id="lastName" name="lastName" required><br>
+            <input type="text" id="lastName" name="lastName" value="${param.lastName}" required><br>
 
             <label class="entry" for="email">Email</label>
-            <input type="email" id="email" name="email" required><br>
+            <input type="email" id="email" name="email" value="${param.email}" required><br>
 
             <label class="entry" for="dateOfBirth">Date of Birth</label>
-            <input type="date" id="dateOfBirth" name="dateOfBirth" required><br>
+            <input type="date" id="dateOfBirth" name="dateOfBirth" value="${param.dateOfBirth}" required><br>
         </section>
 
         <section>
