@@ -48,7 +48,7 @@ public class EmailListServlet extends HttpServlet {
                 String contactVia = request.getParameter("contactVia");
 
                 User user = new User(firstName, lastName, email, LocalDate.parse(dateOfBirth));
-                Survey survey = new Survey(user, hearAbout, wantsAnnouncements,
+                Survey survey = new Survey(hearAbout, wantsAnnouncements,
                         wantsCdReleases, contactVia);
                 SurveyDTO surveyDTO = new SurveyDTO(user, survey);
                 UserDB.insert(surveyDTO);
